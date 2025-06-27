@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Searchbar from "./searchbar.jsx";
 import Filter from "./filter.jsx";
 import Card from "./card.jsx";
+import { Link } from 'react-router-dom';
 
 function CountryGrid() {
     const [searching, setSearching] = useState("")
@@ -39,9 +40,11 @@ function CountryGrid() {
             ): (
                 <div className={"cardContainer"}>
                     {countriesData.map((countrie)=>(
+                        <Link to={`/country/${countrie.cca3}`}>
                         <Card key={countrie.cca3} name={countrie.name.common} capital={countrie.capital} region={countrie.region}
                               flag={countrie.flags.png} population={countrie.population}
                         />
+                        </Link>
                     ))}
                 </div>
             )}

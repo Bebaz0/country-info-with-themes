@@ -190,6 +190,129 @@ select:hover {
   font-weight: var(--medium-weight);
 }
 
+/* Country Detail Page Styles */
+.country-detail {
+  padding: 40px 5vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: var(--card-background-col);
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.05);
+  padding: 10px 32px;
+  border-radius: 6px;
+  margin-bottom: 80px;
+  font-size: 16px;
+  font-weight: var(--light-weight);
+  color: var(--text-col);
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.back-button:hover {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  align-items: flex-start;
+}
+
+.detail-flag {
+  width: 100%;
+}
+
+.detail-flag img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+}
+
+.detail-info {
+  padding-top: 20px;
+}
+
+.country-title {
+  font-size: 32px;
+  font-weight: var(--heavy-weight);
+  margin-bottom: 32px;
+  color: var(--text-col);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+  margin-bottom: 68px;
+}
+
+.detail-column p {
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-col);
+  font-weight: var(--light-weight);
+}
+
+.detail-label {
+  font-weight: var(--medium-weight);
+  color: var(--text-col);
+}
+
+.border-countries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.border-label {
+  font-weight: var(--medium-weight);
+  font-size: 16px;
+  color: var(--text-col);
+  flex-shrink: 0;
+}
+
+.border-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.border-button {
+  background: var(--card-background-col);
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.05);
+  padding: 5px 28px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: var(--light-weight);
+  color: var(--text-col);
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  min-width: 96px;
+  text-align: center;
+}
+
+.border-button:hover {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.detail-loading,
+.detail-error {
+  padding: 40px 5vw;
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-col);
+}
+
 
 #root {
   max-width: 1440px;

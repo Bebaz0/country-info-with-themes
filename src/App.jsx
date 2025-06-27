@@ -1,11 +1,7 @@
-import {useEffect, useState} from 'react'
 import './App.css'
-import Searchbar from "./components/searchbar.jsx";
-import Filter from "./components/filter.jsx";
-import Card from "./components/card.jsx";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CountryGrid from "./components/CountryGrid.jsx";
-import CardDetail from "components/CardDetail.jsx"
+import CardDetail from "./components/CardDetail.jsx"
 
 
 
@@ -19,7 +15,7 @@ function App() {
         </header>
         <Routes>
             <Route path="/" element={<CountryGrid />} />
-            <Route path="/country/:countryCode" element={<CardDetail />} />
+            <Route path="/country/:countryCode" element={<CardDetail/>} />
         </Routes>
     </div>
     </Router>
