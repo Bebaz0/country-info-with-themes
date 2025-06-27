@@ -13,7 +13,7 @@ function CountryGrid() {
     useEffect(() => {
         const fetchCountries = async () => {
             try{
-                const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,subregion,capital,tld,currencies,languages,borders,flags")
+                const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,capital,tld,currencies,languages,borders,flags,cca3")
                 const data = await response.json()
                 setCountriesData(data)
                 console.log(data)
@@ -40,10 +40,13 @@ function CountryGrid() {
             ): (
                 <div className={"cardContainer"}>
                     {countriesData.map((countrie)=>(
-                        <Link to={`/country/${countrie.cca3}`}>
-                        <Card key={countrie.cca3} name={countrie.name.common} capital={countrie.capital} region={countrie.region}
-                              flag={countrie.flags.png} population={countrie.population}
-                        />
+                        <Link to={`/country/${countrie.cca3}`} key={countrie.cca3}>
+                            <Card  name={countrie.name.common}
+                                   capital={countrie.capital ? countrie.capital[0] : 'N/A'}
+                                   region={countrie.region}
+                                   flag={countrie.flags.png}
+                                   population={countrie.population}
+                            />
                         </Link>
                     ))}
                 </div>
