@@ -28,16 +28,21 @@ function App() {
 
   return (
     <Router>
-    <div className={"container"}>
-        <header>
-            <h1>Where in the world?</h1>
-            <button id={"themeButton"} onClick={() => setIsDarkMode(!isDarkMode)}>Dark Mode</button>
-        </header>
-        <Routes>
-            <Route path="/" element={<CountryGrid />} />
-            <Route path="/country/:countryCode" element={<CardDetail/>} />
-        </Routes>
-    </div>
+        <div className={"container"}>
+            <header>
+                <h1>Where in the world?</h1>
+                <button id={"themeButton"} onClick={() => setIsDarkMode(!isDarkMode)}>Dark Mode</button>
+            </header>
+            <div className="attribution">
+                Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+                Coded by <a href="#">Bebaz0</a>.
+            </div>
+            <Routes>
+                <Route path="/" element={<CountryGrid/>}/>
+                <Route path="/country/:countryCode" element={<CardDetail/>}/>
+            </Routes>
+
+        </div>
     </Router>
   )
 }
