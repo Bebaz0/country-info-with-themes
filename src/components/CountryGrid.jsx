@@ -10,23 +10,60 @@ function CountryGrid() {
     const [countriesData, setCountriesData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchCountries = async () => {
-            try{
-                const response = await fetch("https://restcountries.com/v3.1/all?fields=name,population,region,capital,tld,currencies,languages,borders,flags,cca3")
-                const data = await response.json()
+    const fetchCountries = async (query = "", filterquery="") => {
+        setIsLoading(true)
+        let filtering = false
+        try{
+            let endpoint
+            let data
+            if (filterquery == ""){
+                endpoint = query? `https://restcountries.com/v3.1/name/${encodeURIComponent(query)}`
+                    :"https://restcountries.com/v3.1/all?fields=name,population,region,capital,tld,currencies,languages,borders,flags,cca3"
+            }
+            else{
+                if (!query){
+                    endpoint = `https://restcountries.com/v3.1/subregion/${filterquery}`
+                }
+                else{const searchResponse = await fetch(`https://restcountries.com/v3.1/name/${encodeURIComponent(query)}`)
+                    if (!searchResponse.ok) {
+                        if (searchResponse.status === 404) {
+                            console.log("Country not found")
+                            return
+                        }
+                        throw new Error(`HTTP error! status: ${searchResponse.status}`)
+                    }
+                    const searchData = await searchResponse.json()
+                    const data = searchData.filter(country =>
+                        country.region.toLowerCase() === filterquery.toLowerCase()
+                    )
+                    setCountriesData(data)
+                    filtering = true}
+            }
+
+            const response = await fetch(endpoint)
+            if (!response.ok) {
+                if (response.status === 404) {
+                    console.log("Country not found")
+                    // Don't update countriesData, keep existing data
+                    return
+                }
+                throw new Error(`HTTP error! status: ${response.status}`)
+            }
+            if (!filtering){data = await response.json()
                 setCountriesData(data)
-                console.log(data)
-            }
-            catch (error){
-                console.log(error)
-            }
-            finally {
-                setIsLoading(false)
-            }
+                console.log(data)}
         }
-        fetchCountries();
-    }, []);
+        catch (error){
+            console.log(error)
+        }
+        finally {
+            setIsLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchCountries(searching,filter);
+    }, [searching,filter]);
 
 
     return (
@@ -35,7 +72,7 @@ function CountryGrid() {
                 <Searchbar searching={searching} setSearching={setSearching}></Searchbar>
                 <Filter setFilter={setFilter}></Filter>
             </div>
-            {isLoading ? (
+            {isLoading?(
                 <p>Loading...</p>
             ): (
                 <div className={"cardContainer"}>

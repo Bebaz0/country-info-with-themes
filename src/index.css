@@ -55,6 +55,7 @@ header{
 }
 
 button{
+  color: var(--text-col);
   padding: 8px 16px;
   font-size: 14px;
   border: none;
@@ -97,6 +98,7 @@ button{
 }
 
 .search-input{
+  color: var(--text-col);
   flex: 1;
   border: none;
   outline: none;
